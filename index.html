@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="navbar-content">
+            <h1>Darene Bamba</h1>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" title="Toggle navigation menu">
+            <label for="nav-toggle" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <nav>
+                <ul>
+                    <li><a href="#hero" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About</a></li>
+                    <li><a href="#certificates" class="nav-link">Certificates</a></li>
+                    <li><a href="#projects" class="nav-link">Projects</a></li>
+                    <li><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav SANITIZED>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="hero" class="hero fade-in">
+        <div class="hero-content">
+            <img src="{{ url_for('static', filename='images/pfp.jpg') }}" alt="Profile Image" class="hero-image">
+            <div class="hero-text">
+                <h2>Welcome to My Portfolio</h2>
+                <p>Hi, I’m Darene Bamba, a passionate 3rd year Computer Science student at Mabini Colleges Inc.</p>
+                <a href="https://www.facebook.com/darene.bamba.1" target="_blank" rel="noopener" class="social-icon" title="Visit my Facebook profile">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about fade-in">
+        <h2>About Me</h2>
+        <div class="about-box about-description">
+            <p>Hello, I'm Darene Bamba, a student at Mabini Colleges Daet with a keen interest in application development. I primarily work with Python and also apply HTML, CSS, and JavaScript to enhance functionality and user experience. I’m committed to continuous learning and bringing thoughtful, practical solutions to every project I undertake.</p>
+        </div>
+        <div class="about-box about-skills">
+            <h3>Skills</h3>
+            <p>HTML, CSS, Javascript, Java, Python</p>
+        </div>
+    </section>
+
+    <!-- Certificates -->
+    <section id="certificates" class="certificates fade-in">
+        <h2>Certificates</h2>
+        <div class="cert-container">
+            <div class="cert-box">
+                <img src="{{ url_for('static', filename='images/certificate.3.png') }}" alt="Certificate of Completion" class="cert-image" onclick="enlargeImage(this)">
+                <h1>Certificate of Completion</h1>
+                <a href="{{ url_for('static', filename='images/certificate.3.png') }}" class="cert-download-btn" download="Certificate of Completion">Download</a>
+            </div>
+            <div class="cert-box">
+                <img src="{{ url_for('static', filename='images/certificate.2.png') }}" alt="Certificate of Completion" class="cert-image" onclick="enlargeImage(this)">
+                <h1>Certificate of Completion</h1>
+                <a href="{{ url_for('static', filename='images/certificate.2.png') }}" class="cert-download-btn" download="Certificate of Completion">Download</a>
+            </div>
+            <div class="cert-box">
+                <img src="{{ url_for('static', filename='images/certificate.1.png') }}" alt="Certificate of Completion" class="cert-image" onclick="enlargeImage(this)">
+                <h1>Certificate of Completion</h1>
+                <a href="{{ url_for('static', filename='images/certificate.1.png') }}" class="cert-download-btn" download="Certificate of Completion">Download</a>
+            </div>
+        </div>
+        <!-- Modal for enlarged image -->
+        <div id="imageModal" class="modal">
+            <span class="close-btn" onclick="closeImage()">×</span>
+            <img id="enlargedImg" class="modal-content" alt="Enlarged Certificate">
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="projects fade-in">
+        <h2>Projects</h2>
+        <div class="project-container">
+            <div class="project-card">
+                <img src="{{ url_for('static', filename='images/project1.png') }}" alt="Project 1" class="project-image">
+                <h3>Project 1</h3>
+                <p>A Data Visualization using Python Pandas Library.</p>
+                <div class="project-buttons">
+                    <a href="https://pl-101-exam.onrender.com" target="_blank" class="view-btn" rel="noopener">Website</a>
+                </div>
+            </div>
+              <div class="project-card">
+                <img src="{{ url_for('static', filename='images/project2.png') }}" alt="Project 1" class="project-image">
+                <h3>Project 2</h3>
+                <p>Activity Hub - Collection of Activity 1, 2, and Numpy Activities.</p>
+                <div class="project-buttons">
+                    <a href="https://activity-hub-6gph.onrender.com" target="_blank" class="view-btn" rel="noopener">Website</a>
+                </div>
+            </div>
+               <div class="project-card">
+                <img src="{{ url_for('static', filename='images/project3.png') }}" alt="Project 1" class="project-image">
+                <h3>Project 3</h3>
+                <p>Exam.</p>
+                <div class="project-buttons">
+                    <a href="https://exam-8h7m.onrender.com" target="_blank" class="view-btn" rel="noopener">Website</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact fade-in">
+        <h2>Contact Me</h2>
+        <p class="contact-email">Email: bionicmecha@gmail.com</p>
+        <p>Phone: +639461588308</p>
+        <form id="contact-form" class="contact-form" action="/send_email" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>© <span id="current-year">2025</span> All rights reserved.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/darene.bamba.1" target="_blank" rel="noopener" class="social-icon" title="Visit my Facebook profile">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // Navbar toggle functionality
+        const navToggle = document.querySelector('.nav-toggle');
+        const navLinks = document.querySelectorAll('.navbar ul a');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.checked = false;
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            const navbar = document.querySelector('.navbar');
+            if (!navbar.contains(e.target) && navToggle.checked) {
+                navToggle.checked = false;
+            }
+        });
+
+        // Update current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Fade-in sections on scroll
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+
+        // Image enlargement functions
+        function enlargeImage(img) {
+            var modal = document.getElementById("imageModal");
+            var modalImg = document.getElementById("enlargedImg");
+            modal.style.display = "flex";
+            modalImg.src = img.src;
+        }
+
+        function closeImage() {
+            var modal = document.getElementById("imageModal");
+            modal.style.display = "none";
+        }
+
+        // Form submission with recipient email fetched from page
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const form = this;
+
+            // Fetch the recipient email from the page
+            const recipientEmail = document.querySelector('.contact-email').textContent.replace('Email: ', '').trim();
+
+            // Create FormData and append the recipient email
+            const formData = new FormData(form);
+            formData.append('recipient_email', recipientEmail);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Message Sent!',
+                        text: `Thank you, ${data.name}! Your message has been sent successfully.`,
+                        confirmButtonColor: '#FFD700'
+                    });
+                    form.reset();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: `Failed to send message: ${data.error}. Please try again or contact directly at ${recipientEmail}`,
+                        confirmButtonColor: '#FFD700'
+                    });
+                }
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: `An error occurred: ${error}. Please try again or contact directly at ${recipientEmail}`,
+                    confirmButtonColor: '#FFD700'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
